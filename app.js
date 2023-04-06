@@ -107,67 +107,84 @@ app.post('/search', async function (req, res) {
   // /// Search by food
 
   else if (req.body.type === "foodSearch") {
-    var selectionArgument = {}
     if (req.body.yesApple == true && req.body.yesCarrot == true) {
       selectionArgument = {
         $and: [
           { loves: { $in: ["apple"] } },
           { loves: { $in: ["carrot"] } }
         ]
-    }};
+    };
       var projectionArgument = {};
       if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == false) {
         projectionArgument = { "name": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       } else if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == true) {
         projectionArgument = { "name": 1, "weight": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == true) {
         projectionArgument = { "weight": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == false) {
         projectionArgument = {}
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       }
-    } else if (req.body.yesApple == true && req.body.yesCarrot == false) {
-      selectionArgument = {
-         loves: { $in: ["apple"] }
-    }};
+    }
+     else if (req.body.yesApple == true && req.body.yesCarrot == false) {
+        selectionArgument = {
+            loves: { $in: ["apple"] }        
+      };
+    //  else if (req.body.yesApple == true && req.body.yesCarrot == false) {
+    //   selectionArgument = {
+    //     $and: [
+    //       { loves: { $in: ["apple"] } },
+    //       { loves: { $in: ["apple"] } }
+    //     ]
+    // }};
       var projectionArgument = {};
       if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == false) {
         projectionArgument = { "name": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       } else if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == true) {
         projectionArgument = { "name": 1, "weight": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == true) {
         projectionArgument = { "weight": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
-      } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == false) {
-        projectionArgument = {}
-        const result = await unicornModel.find(selectionArgument, projectionArgument);
-        res.json(result);
-      }
-    } else if (req.body.yesApple == false && req.body.yesCarrot == true) {
+        return
+      // } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == false) {
+      //   projectionArgument = {}
+      //   const result = await unicornModel.find(selectionArgument, projectionArgument);
+      //   res.json(result);
+      //   return
+      }}
+     else if (req.body.yesApple == false && req.body.yesCarrot == true) {
       selectionArgument = {
         loves: { $in: ["carrot"] }
-    }};
+    };
       var projectionArgument = {};
       if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == false) {
         projectionArgument = { "name": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       } else if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == true) {
         projectionArgument = { "name": 1, "weight": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
+        return
       } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == true) {
         projectionArgument = { "weight": 1, "_id": 0 }
         const result = await unicornModel.find(selectionArgument, projectionArgument);
@@ -176,33 +193,36 @@ app.post('/search', async function (req, res) {
         projectionArgument = {}
         const result = await unicornModel.find(selectionArgument, projectionArgument);
         res.json(result);
-      }
-     else if (req.body.projectionfilters.yesApple == false && req.body.pprojectionfilters.yesCarrot == false) {
-      selectionArgument = {
-        weight: { $gte: 0 }
-    }};
-      var projectionArgument = {};
-      if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == false) {
-        projectionArgument = { "name": 1, "_id": 0 }
-        const result = await unicornModel.find(selectionArgument, projectionArgument);
-        res.json(result);
-      } else if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == true) {
-        projectionArgument = { "name": 1, "weight": 1, "_id": 0 }
-        const result = await unicornModel.find(selectionArgument, projectionArgument);
-        res.json(result);
-      } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == true) {
-        projectionArgument = { "weight": 1, "_id": 0 }
-        const result = await unicornModel.find(selectionArgument, projectionArgument);
-        res.json(result);
-      } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == false) {
-        projectionArgument = {}
-        const result = await unicornModel.find(selectionArgument, projectionArgument);
-        res.json(result);
-      }
-)
+        return
+      }}}})
+    
+    // } else if (req.body.projectionfilters.yesApple == false && req.body.pprojectionfilters.yesCarrot == false) {
+    //   selectionArgument = {
+    //     weight: { $gte: 0 }
+    // };
+    //   var projectionArgument = {};
+    //   if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == false) {
+    //     projectionArgument = { "name": 1, "_id": 0 }
+    //     const result = await unicornModel.find(selectionArgument, projectionArgument);
+    //     // res.json(result);
+    //   } else if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == true) {
+    //     projectionArgument = { "name": 1, "weight": 1, "_id": 0 }
+    //     const result = await unicornModel.find(selectionArgument, projectionArgument);
+    //     res.json(result);
+    //   } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == true) {
+    //     projectionArgument = { "weight": 1, "_id": 0 }
+    //     const result = await unicornModel.find(selectionArgument, projectionArgument);
+    //     res.json(result);
+    //   } else if (req.body.projectionfilters.name == false && req.body.projectionfilters.weight == false) {
+    //     projectionArgument = {}
+    //     const result = await unicornModel.find(selectionArgument, projectionArgument);
+    //     res.json(result);
+    //   }
+    // }
 
-    const result = await unicornModel.find(selectionArgument, projectionArgument);
-    res.json(result);
+
+    // const result = await unicornModel.find(selectionArgument, projectionArgument);
+    // res.json(result);
   
 
 
