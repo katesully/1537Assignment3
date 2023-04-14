@@ -50,11 +50,11 @@ app.post('/search', async function (req, res) {
 
   // NAME SEARCH
   if (req.body.type === "nameSearch") {
-    var selectionArgument = {}
-    if (req.body.name)
+ 
+    if (req.body.name) 
       selectionArgument = {
         name: req.body.name,
-      }
+       }
     var projectionArgument = {}
     if (req.body.projectionfilters.name == true && req.body.projectionfilters.weight == false) {
       projectionArgument = { "name": 1, "_id": 0 }
@@ -234,4 +234,6 @@ app.post('/search', async function (req, res) {
 
 
 module.exports = app;
+
+
 
